@@ -40,3 +40,33 @@
 .read-the-docs {
   color: #888;
 }
+
+.articles-div {
+  display: flex;
+  justify-content: center;
+}
+
+.articles-list {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style-type: none;
+  border: 1px solid rgb(143, 143, 143);
+  border-radius: 50px;
+  background-color: rgb(143, 143, 143);
+}
+
+.articles-list-item {
+  border: 1px solid black;
+  border-radius: 50px;
+  background-color: black;
+  padding: 50px;
+  margin: 50px;
+}
+
+img {
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 50px;
+}
