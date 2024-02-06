@@ -3,6 +3,7 @@ import { getArticleById } from "../utils/get";
 import { useParams } from "react-router-dom";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import { patchArticleUpvote, patchArticleDownvote } from "../utils/patch";
 import Comments from "./Comments";
 
 export default function SingleArticle() {
@@ -20,13 +21,13 @@ export default function SingleArticle() {
   }, []);
 
   const handleUpvote = () => {
-    console.log("upvote clicked");
     setVotes(votes + 1);
+    patchArticleUpvote(article_id);
   };
 
   const handleDownvote = () => {
-    console.log("downvote clicked");
     setVotes(votes - 1);
+    patchArticleDownvote(article_id);
   };
 
   if (isLoading) return <p>Loading article...</p>;
