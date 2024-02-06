@@ -3,7 +3,7 @@ import { getArticleById } from "../utils/get";
 import { useParams } from "react-router-dom";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import { patchArticleUpvote, patchArticleDownvote } from "../utils/patch";
+import { patchArticleVote } from "../utils/patch";
 import Comments from "./Comments";
 
 export default function SingleArticle() {
@@ -24,27 +24,28 @@ export default function SingleArticle() {
 
   const handleUpvote = () => {
     setVotes(votes + 1);
-    patchArticleUpvote(article_id)
+    patchArticleVote(article_id, 1)
       .then((response) => {
         setError(null);
       })
       .catch((err) => {
         setError("Voting failed, please try again later");
+        setVotes(votes);
       });
   };
 
   const handleDownvote = () => {
     setVotes(votes - 1);
-    patchArticleDownvote(article_id)
+    patchArticleVote(article_id, -1)
       .then((response) => {
         setError(null);
       })
       .catch((err) => {
         setError("Voting failed, please try again later");
+        setVotes(votes);
       });
   };
 
-  //   if (error) return <p>{error}</p>;
   if (isLoading) return <p>Loading article...</p>;
   return (
     <div className="single-article-div">
