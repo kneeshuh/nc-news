@@ -7,6 +7,12 @@ import ArticleList from "./components/ArticleList";
 import SingleArticle from "./components/SingleArticle";
 
 function App() {
+  const [loggedInUser, setLoggedInUser] = useState({
+    username: "grumpy19",
+    name: "Tom Tickle",
+    avatar_url:
+      "https://vignette.wikia.nocookie.net/mrmen/images/d/d6/Mr-Tickle-9a.png/revision/latest?cb=20180127221953",
+  });
   return (
     <>
       <Header />
