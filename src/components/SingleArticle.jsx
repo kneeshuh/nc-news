@@ -1,16 +1,20 @@
 import { useState, useEffect } from "react";
 import { getArticleById } from "../utils/get";
 import { useParams } from "react-router-dom";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import Comments from "./Comments";
 
 export default function SingleArticle() {
-  let { article_id } = useParams();
+  const { article_id } = useParams();
   const [article, setArticle] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [votes, setVotes] = useState(0);
 
   useEffect(() => {
     getArticleById(article_id).then((response) => {
       setArticle(response.data.article);
+      setVotes(response.data.article.votes);
       setIsLoading(false);
     });
   }, []);
@@ -25,6 +29,16 @@ export default function SingleArticle() {
             <h3>by {article.author}</h3>
             <img src={article.article_img_url} />
             <p>{article.body}</p>
+            <p>Votes: {votes}</p>
+            <div className="votes-div">
+              <button>
+                <ArrowUpwardIcon />
+              </button>
+              <p className="votes-p">Vote</p>
+              <button>
+                <ArrowDownwardIcon />
+              </button>
+            </div>
           </li>
         </ul>
       </div>

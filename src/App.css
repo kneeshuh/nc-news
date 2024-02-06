@@ -117,3 +117,12 @@ a:visited {
   color: black;
   text-decoration: none;
 }
+
+.votes-div {
+  display: flex;
+  justify-content: center;
+}
+
+.votes-p {
+  margin: 10px 10px 0 10px;
+}

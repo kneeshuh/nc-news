@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getAllArticles, getArticleById } from "../utils/get";
-import SingleArticle from "./SingleArticle";
 
 export default function ArticleList() {
   const [articles, setArticles] = useState([]);
