@@ -4,16 +4,9 @@ const newsAPI = axios.create({
     baseURL: 'https://ni-nc-news.onrender.com/api'
 })
 
-export const patchArticleUpvote = (article_id) => {
-    const increment = {
-        "inc_votes": 1
+export const patchArticleVote = (article_id, increment) => {
+    const body = {
+        "inc_votes": increment
     }
-    return newsAPI.patch(`/articles/${article_id}`, increment)
-}
-
-export const patchArticleDownvote = (article_id) => {
-    const increment = {
-        "inc_votes": -1
-    }
-    return newsAPI.patch(`/articles/${article_id}`, increment)
+    return newsAPI.patch(`articles/${article_id}`, body)
 }
