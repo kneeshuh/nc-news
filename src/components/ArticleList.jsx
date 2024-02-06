@@ -5,22 +5,16 @@ import SingleArticle from "./SingleArticle";
 
 export default function ArticleList() {
   const [articles, setArticles] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     getAllArticles().then((response) => {
       setArticles(response.data.articles);
+      setIsLoading(false);
     });
   }, []);
 
-  const articleHandler = (article_id) => {
-    getArticleById(article_id).then((response) => {
-      setArticles(response.data.article);
-    });
-  };
-
-  if (articles.length === undefined) {
-    return <SingleArticle articles={articles} />;
-  }
+  if (isLoading) return <p>Loading articles...</p>;
   return (
     <div className="articles-div">
       <ul className="articles-list">
@@ -32,7 +26,7 @@ export default function ArticleList() {
                   className="article-click"
                   onClick={() => articleHandler(article.article_id)}
                 >
-                  <a>{article.title}</a>
+                  {article.title}
                 </h2>
               </Link>
               <h3>by {article.author}</h3>
@@ -44,5 +38,3 @@ export default function ArticleList() {
     </div>
   );
 }
-
-// routing to page with correct article id but need to then render that specific article on that page

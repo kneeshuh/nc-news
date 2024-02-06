@@ -1,45 +1,34 @@
 import { useState, useEffect } from "react";
-import { getArticleComments } from "../utils/get";
+import { getArticleById } from "../utils/get";
+import { useParams } from "react-router-dom";
+import Comments from "./Comments";
 
-export default function SingleArticle(props) {
-  const { articles } = props;
-  const [comments, setComments] = useState([]);
+export default function SingleArticle() {
+  let { article_id } = useParams();
+  const [article, setArticle] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    getArticleComments(articles.article_id).then((response) => {
-      setComments(response.data.comments);
+    getArticleById(article_id).then((response) => {
+      setArticle(response.data.article);
+      setIsLoading(false);
     });
   }, []);
 
+  if (isLoading) return <p>Loading article...</p>;
   return (
-    <div className="single-comment-div">
+    <div className="single-article-div">
       <div className="articles-div">
         <ul className="articles-list">
-          <li className="articles-list-item">
-            <h2>{articles.title}</h2>
-            <h3>by {articles.author}</h3>
-            <img src={articles.article_img_url} />
-            <p>{articles.body}</p>
+          <li key={article.article_id} className="articles-list-item">
+            <h2>{article.title}</h2>
+            <h3>by {article.author}</h3>
+            <img src={article.article_img_url} />
+            <p>{article.body}</p>
           </li>
         </ul>
       </div>
-      <div className="comments-div">
-        <ul className="comments-list">
-          <h2>Comments</h2>
-          {comments.map((comment) => {
-            {
-              console.log(comment), "comment in div";
-            }
-            return (
-              <li key={comment.comment_id} className="comments-list-item">
-                <h3>{comment.author}</h3>
-                <p>{comment.body}</p>
-                <h4>Votes: {comment.votes}</h4>
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+      <div className="comments-div">{<Comments />}</div>
     </div>
   );
 }
