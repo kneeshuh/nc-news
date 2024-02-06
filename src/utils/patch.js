@@ -8,12 +8,12 @@ export const patchArticleUpvote = (article_id) => {
     const increment = {
         "inc_votes": 1
     }
-    newsAPI.patch(`/articles/${article_id}`, increment)
+    return newsAPI.patch(`/articles/${article_id}`, increment)
 }
 
 export const patchArticleDownvote = (article_id) => {
     const increment = {
         "inc_votes": -1
     }
-    newsAPI.patch(`/articles/${article_id}`, increment)
+    return newsAPI.patch(`/articles/${article_id}`, increment)
 }

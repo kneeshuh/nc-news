@@ -10,6 +10,7 @@ export default function SingleArticle() {
   const { article_id } = useParams();
   const [article, setArticle] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [votes, setVotes] = useState(0);
 
   useEffect(() => {
@@ -17,19 +18,33 @@ export default function SingleArticle() {
       setArticle(response.data.article);
       setVotes(response.data.article.votes);
       setIsLoading(false);
+      setError(null);
     });
   }, []);
 
   const handleUpvote = () => {
     setVotes(votes + 1);
-    patchArticleUpvote(article_id);
+    patchArticleUpvote(article_id)
+      .then((response) => {
+        setError(null);
+      })
+      .catch((err) => {
+        setError("Voting failed, please try again later");
+      });
   };
 
   const handleDownvote = () => {
     setVotes(votes - 1);
-    patchArticleDownvote(article_id);
+    patchArticleDownvote(article_id)
+      .then((response) => {
+        setError(null);
+      })
+      .catch((err) => {
+        setError("Voting failed, please try again later");
+      });
   };
 
+  //   if (error) return <p>{error}</p>;
   if (isLoading) return <p>Loading article...</p>;
   return (
     <div className="single-article-div">
@@ -50,6 +65,7 @@ export default function SingleArticle() {
                 <ArrowDownwardIcon />
               </button>
             </div>
+            <div className="error-div">{error}</div>
           </li>
         </ul>
       </div>
