@@ -7,3 +7,11 @@ const newsAPI = axios.create({
 export const getAllArticles = () => {
     return newsAPI.get('/articles')
 }
+
+export const getArticleById = (article_id) => {
+    return newsAPI.get(`/articles/${article_id}`)
+}
+
+export const getArticleComments = (article_id) => {
+    return newsAPI.get(`/articles/${article_id}/comments`)
+}
