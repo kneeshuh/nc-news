@@ -19,6 +19,16 @@ export default function SingleArticle() {
     });
   }, []);
 
+  const handleUpvote = () => {
+    console.log("upvote clicked");
+    setVotes(votes + 1);
+  };
+
+  const handleDownvote = () => {
+    console.log("downvote clicked");
+    setVotes(votes - 1);
+  };
+
   if (isLoading) return <p>Loading article...</p>;
   return (
     <div className="single-article-div">
@@ -31,11 +41,11 @@ export default function SingleArticle() {
             <p>{article.body}</p>
             <p>Votes: {votes}</p>
             <div className="votes-div">
-              <button>
+              <button onClick={handleUpvote}>
                 <ArrowUpwardIcon />
               </button>
               <p className="votes-p">Vote</p>
-              <button>
+              <button onClick={handleDownvote}>
                 <ArrowDownwardIcon />
               </button>
             </div>
