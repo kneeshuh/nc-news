@@ -5,6 +5,7 @@ import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { patchArticleUpvote, patchArticleDownvote } from "../utils/patch";
 import Comments from "./Comments";
+import CommentAdder from "./CommentAdder";
 
 export default function SingleArticle() {
   const { article_id } = useParams();
@@ -44,7 +45,6 @@ export default function SingleArticle() {
       });
   };
 
-  //   if (error) return <p>{error}</p>;
   if (isLoading) return <p>Loading article...</p>;
   return (
     <div className="single-article-div">
