@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getAllArticles, getArticleById } from "../utils/get";
-import SingleArticle from "./SingleArticle";
 
 export default function ArticleList() {
   const [articles, setArticles] = useState([]);
@@ -22,12 +21,7 @@ export default function ArticleList() {
           return (
             <li key={article.article_id} className="articles-list-item">
               <Link to={`/articles/${article.article_id}`}>
-                <h2
-                  className="article-click"
-                  onClick={() => articleHandler(article.article_id)}
-                >
-                  {article.title}
-                </h2>
+                <h2 className="article-click">{article.title}</h2>
               </Link>
               <h3>by {article.author}</h3>
               <img src={article.article_img_url} />
