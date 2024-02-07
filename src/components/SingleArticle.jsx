@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { getArticleById } from "../utils/get";
+import { getArticleById } from "../utils/api";
 import { useParams } from "react-router-dom";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import { patchArticleVote } from "../utils/patch";
+import { patchArticleVote } from "../utils/api";
 import Comments from "./Comments";
 
 export default function SingleArticle() {
