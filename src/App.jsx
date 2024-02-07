@@ -6,6 +6,7 @@ import Header from "./components/Header";
 import Navigation from "./components/Navigation";
 import ArticleList from "./components/ArticleList";
 import SingleArticle from "./components/SingleArticle";
+import { Article } from "@mui/icons-material";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({
@@ -22,6 +23,10 @@ function App() {
       <Routes>
         <Route path="/articles" element={<ArticleList />} />
         <Route path="/articles/:article_id" element={<SingleArticle />} />
+        <Route
+          path="/articles/topic/:article_topic"
+          element={<ArticleList />}
+        />
       </Routes>
     </>
   );
