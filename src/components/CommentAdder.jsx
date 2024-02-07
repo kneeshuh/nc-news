@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams } from "react-router-dom";
-import { postComment } from "../utils/post";
+import { postComment } from "../utils/api";
 
 export default function CommentAdder(props) {
   const { comments, setComments } = props;
@@ -34,41 +34,49 @@ export default function CommentAdder(props) {
       .catch((err) => {
         setError("Failed to post comment, please check your username is valid");
         setAddingComment(false);
+        setCommentAdded(null);
       });
   };
 
   if (addingComment && error === null) return <p>Adding comment...</p>;
   return (
     <div className="add-comments-div">
-      <p>Add a comment:</p>
       <form
+        className="add-comments-form"
         onSubmit={() => {
           setAddingComment(true);
           handleCommentSubmit(article_id);
         }}
       >
-        <label htmlFor="username">Username</label>
-        <input
-          type="text"
-          id="username"
-          name="username"
-          placeholder="Your username here..."
-          onChange={handleFormChange}
-          required
-        ></input>
-        <label htmlFor="comment">Comment</label>
-        <input
-          type="text"
-          id="comment"
-          name="comment"
-          placeholder="Your comment here..."
-          onChange={handleFormChange}
-          required
-        ></input>
-        <button>Post comment</button>
+        <h2 className="comments-heading">Add a comment:</h2>
+        <div className="add-comments-inputs">
+          <label htmlFor="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            placeholder="Your username here..."
+            onChange={handleFormChange}
+            required
+          ></input>
+          <label htmlFor="comment">Comment</label>
+          <input
+            type="text"
+            id="comment"
+            name="comment"
+            placeholder="Your comment here..."
+            onChange={handleFormChange}
+            required
+          ></input>
+        </div>
+        <div className="add-comments-submit">
+          <button>Post comment</button>
+        </div>
+      </form>
+      <div className="error-div">
         <p>{error}</p>
         <p>{commentAdded}</p>
-      </form>
+      </div>
     </div>
   );
 }

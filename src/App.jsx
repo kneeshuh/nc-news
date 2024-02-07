@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
+import UserInfo from "./components/UserInfo";
 import Header from "./components/Header";
 import Navigation from "./components/Navigation";
 import ArticleList from "./components/ArticleList";
@@ -15,6 +16,7 @@ function App() {
   });
   return (
     <>
+      <UserInfo />
       <Header />
       <Navigation />
       <Routes>
