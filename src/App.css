@@ -143,3 +143,16 @@ a:visited {
   justify-content: center;
   width: 50%;
 }
+
+.articles-nav {
+  display: flex;
+  justify-content: space-around;
+  width: 50%;
+  margin: 40px 0 0 0;
+}
+
+.topic-heading {
+  width: 100%;
+  padding: 30px 0 0 0;
+  color: black;
+}
