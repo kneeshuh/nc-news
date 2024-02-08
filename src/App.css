@@ -166,3 +166,31 @@ a:visited {
   margin: 40px 0 0 10px;
   padding: 10px;
 }
+
+.topics-div {
+  display: flex;
+  justify-content: center;
+}
+
+.topics-list {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style-type: none;
+  border: 1px solid rgb(227, 227, 227);
+  border-radius: 50px;
+  background-color: rgb(227, 227, 227);
+  text-decoration: none;
+}
+
+.topics-list-item {
+  border: 1px solid whitesmoke;
+  border-radius: 50px;
+  background-color: whitesmoke;
+  padding: 50px;
+  margin: 50px;
+  color: black;
+  text-decoration: none;
+  width: 50%
+}
