@@ -7,14 +7,19 @@ export default function ArticleList() {
   const [isLoading, setIsLoading] = useState(true);
   const [sort, setSort] = useState(null);
   const [order, setOrder] = useState("DESC");
+  const [error, setError] = useState(null);
 
   const { article_topic } = useParams();
 
   useEffect(() => {
-    getAllArticles(article_topic, sort, order).then((response) => {
-      setArticles(response.data.articles);
-      setIsLoading(false);
-    });
+    getAllArticles(article_topic, sort, order)
+      .then((response) => {
+        setArticles(response.data.articles);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setError(err.message);
+      });
   }, [article_topic, sort, order]);
 
   const handleSortChange = (event) => {
@@ -25,6 +30,7 @@ export default function ArticleList() {
     setOrder(event.target.value);
   };
 
+  if (error) return <p>{error}</p>;
   if (isLoading) return <p>Loading articles...</p>;
   return (
     <div className="articles-div">
