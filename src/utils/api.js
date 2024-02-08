@@ -40,3 +40,7 @@ export const deleteComment = (comment_id) => {
 export const getAllTopics = () => {
     return newsAPI.get(`/topics`)
 }
+
+export const getAllUsers = () => {
+    return newsAPI.get(`/users`)
+}

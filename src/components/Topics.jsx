@@ -4,13 +4,16 @@ import { getAllTopics } from "../utils/api";
 
 export default function Topics() {
   const [topics, setTopics] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     getAllTopics().then((response) => {
       setTopics(response.data.topics);
+      setIsLoading(false);
     });
   });
 
+  if (isLoading) return <p>Loading topics...</p>;
   return (
     <div className="topics-div">
       <ul className="topics-list">
