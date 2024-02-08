@@ -236,6 +236,16 @@ a:visited {
 .home-div {
   display: flex;
   justify-content: center;
+}
+
+.home-article-div {
+  display: flex;
+  justify-content: center;
+}
+
+.home-article-list {
+  display: flex;
+  justify-content: center;
   flex-direction: row;
   flex-wrap: wrap;
   list-style-type: none;
@@ -243,14 +253,9 @@ a:visited {
   border-radius: 50px;
   background-color: rgb(227, 227, 227);
   text-decoration: none;
-  color: black;
 }
 
-.home-heading {
-  width: 100%;
-}
-
-.home-article-div {
+.home-article-list-item {
   border: 1px solid whitesmoke;
   border-radius: 50px;
   background-color: whitesmoke;
@@ -258,7 +263,12 @@ a:visited {
   margin: 50px;
   color: black;
   text-decoration: none;
-  width: 50%
+}
+
+.home-heading {
+  width: 100%;
+  color: black;
+  padding: 30px 0 0 0;
 }
 
 
