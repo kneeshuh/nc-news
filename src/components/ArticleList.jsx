@@ -6,18 +6,23 @@ export default function ArticleList() {
   const [articles, setArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [sort, setSort] = useState(null);
+  const [order, setOrder] = useState("DESC");
 
   const { article_topic } = useParams();
 
   useEffect(() => {
-    getAllArticles(article_topic, sort).then((response) => {
+    getAllArticles(article_topic, sort, order).then((response) => {
       setArticles(response.data.articles);
       setIsLoading(false);
     });
-  }, [article_topic, sort]);
+  }, [article_topic, sort, order]);
 
-  const handleSelectChange = (event) => {
+  const handleSortChange = (event) => {
     setSort(event.target.value);
+  };
+
+  const handleOrderChange = (event) => {
+    setOrder(event.target.value);
   };
 
   if (isLoading) return <p>Loading articles...</p>;
@@ -41,10 +46,15 @@ export default function ArticleList() {
         </nav>
         <div className="sort-articles-div">
           <label htmlFor="sort-articles">Sort articles by:</label>
-          <select id="sort-articles" onChange={handleSelectChange}>
+          <select id="sort-articles" onChange={handleSortChange}>
             <option value="created_at">Date</option>
             <option value="comment_count">Comment count</option>
             <option value="votes">Votes</option>
+          </select>
+          <label htmlFor="order-articles">Order by: </label>
+          <select id="order-articles" onChange={handleOrderChange}>
+            <option value="DESC">Descending</option>
+            <option value="ASC">Ascending</option>
           </select>
         </div>
         {articles.map((article) => {
