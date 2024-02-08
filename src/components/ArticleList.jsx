@@ -10,20 +10,15 @@ export default function ArticleList() {
   const { article_topic } = useParams();
 
   useEffect(() => {
-    getAllArticles(article_topic, sort)
-      .then((response) => {
-        setArticles(response.data.articles);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    getAllArticles(article_topic, sort).then((response) => {
+      setArticles(response.data.articles);
+      setIsLoading(false);
+    });
   }, [article_topic, sort]);
 
   const handleSelectChange = (event) => {
     setSort(event.target.value);
   };
-  console.log(sort);
 
   if (isLoading) return <p>Loading articles...</p>;
   return (
