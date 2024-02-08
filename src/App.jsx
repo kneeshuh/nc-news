@@ -10,6 +10,7 @@ import Topics from "./components/Topics";
 import UsersList from "./components/UsersList";
 import About from "./components/About";
 import Home from "./components/Home";
+import ErrorPage from "./components/ErrorPage";
 
 function App() {
   const [loggedInUser, setLoggedInUser] = useState({
@@ -35,6 +36,7 @@ function App() {
         <Route path="/users" element={<UsersList />} />
         <Route path="/about" element={<About />} />
         <Route path="/" element={<Home />} />
+        <Route path="/*" element={<ErrorPage />} />
       </Routes>
     </>
   );

@@ -12,14 +12,20 @@ export default function SingleArticle() {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [votes, setVotes] = useState(0);
+  const [requestFailed, setRequestFailed] = useState(false);
 
   useEffect(() => {
-    getArticleById(article_id).then((response) => {
-      setArticle(response.data.article);
-      setVotes(response.data.article.votes);
-      setIsLoading(false);
-      setError(null);
-    });
+    getArticleById(article_id)
+      .then((response) => {
+        setArticle(response.data.article);
+        setVotes(response.data.article.votes);
+        setIsLoading(false);
+        setError(null);
+      })
+      .catch((err) => {
+        setRequestFailed(true);
+        setIsLoading(false);
+      });
   }, []);
 
   const handleUpvote = () => {
@@ -46,6 +52,7 @@ export default function SingleArticle() {
       });
   };
 
+  if (requestFailed) return <p>Request failed</p>;
   if (isLoading) return <p>Loading article...</p>;
   return (
     <div className="single-article-div">
