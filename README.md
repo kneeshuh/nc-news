@@ -22,6 +22,6 @@ v21.2.0
 Clear instructions on how to run your project locally, e.g. git clone <repo-url>, cd..., etc.
 
 - Copy this repository's url
-- In your terminal, enter `git clone <repo-url>`
+- Open your terminal and type `git clone <repo-url>` then press enter
 - Then, enter `npm install`
 - Then, enter `npm run dev` to view the project in local host
