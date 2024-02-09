@@ -16,28 +16,39 @@ export default function Comments() {
 
   useEffect(() => {
     getArticleComments(article_id).then((response) => {
+      console.log("getting comments");
       setComments(response.data.comments);
       setIsLoading(false);
     });
-  }, [comments]);
+  }, []);
 
   const deleteHandler = (comment_id) => {
     setIsDeleting(true);
-    deleteComment(comment_id).then(() => {
+    setComments((currComments) => {
       setIsDeleting(false);
+      return currComments.filter(
+        (currComment) => currComment.comment_id !== comment_id
+      );
     });
+    deleteComment(comment_id).then(() => {});
   };
 
   if (isLoading) return <p>Loading comments...</p>;
   if (comments.length === 0) {
     return (
-      <div className="comments-div">
-        <ul className="comments-list">
-          <h2>Comments</h2>
-          <li className="comments-list-item">
-            <p>No Comments Yet</p>
-          </li>
-        </ul>
+      <div>
+        <div className="comments-div">
+          <ul className="comments-list">
+            <h2>Comments</h2>
+            <li className="comments-list-item">
+              <p>No Comments Yet</p>
+              {isDeleting && <p>Deleting comment...</p>}
+            </li>
+          </ul>
+        </div>
+        <div className="add-comment-div">
+          <CommentAdder comments={comments} setComments={setComments} />
+        </div>
       </div>
     );
   }

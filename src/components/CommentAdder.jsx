@@ -27,7 +27,7 @@ export default function CommentAdder(props) {
     postComment(article_id, commentData)
       .then((response) => {
         setError(null);
-        setComments(comments);
+        setComments((currComments) => [response.data.comment, ...currComments]);
         setCommentAdded("Comment Added");
         setAddingComment(false);
       })
